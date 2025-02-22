@@ -5,7 +5,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <nlohmann/json.hpp>
+#include "json.hpp" // Local include
 #include <set>
 #include <fstream>
 
@@ -42,9 +42,9 @@ int main() {
     }
 
     sockaddr_in server;
-    server.sin_addr.s_addr = inet_addr("0.tcp.in.ngrok.io"); // Replace with your ngrok TCP endpoint
+    server.sin_addr.s_addr = inet_addr("127.0.0.1"); // Replace with your ngrok TCP endpoint
     server.sin_family = AF_INET;
-    server.sin_port = htons(12345); // Replace with your ngrok TCP port
+    server.sin_port = htons(3000); // Replace with your ngrok TCP port
 
     if (connect(sock, (struct sockaddr*)&server, sizeof(server)) < 0) {
         std::cerr << "Connection failed" << std::endl;
